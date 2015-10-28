@@ -1,12 +1,10 @@
-library(matrixcalc)
-library(MASS)
 mynorm = function(x, type){if(type=="2"){spectral.norm(x)}else{norm(x,type)}}
 
 smc.FUN = function(A.mat, c_T, col_thresh,m1,m2){
     ## Structured Matrix Completion
     ## A11, A12, A21 are three observed blocks of MATRIX type
     ## c_T is the thresholding level, the default value is 2
-    A11 = A.mat[1:m1,1:m2]; A12 = A.mat[1:m1,-(1:m2)]; A21 = A.mat[(1+m1):p1, 1:m2]
+    A11 = A.mat[1:m1,1:m2]; A12 = A.mat[1:m1,-(1:m2)]; A21 = A.mat[-(1:m1), 1:m2]
     if (missing("c_T")) {c_T = 2}
     if (missing("col_thresh")) {col_thresh = TRUE}
     p1 = dim(A11)[1] + dim(A21)[1]; p2 = dim(A11)[2] + dim(A12)[2];
