@@ -10,7 +10,7 @@ Current literature on matrix completion focuses primarily on independent samplin
 }
 
 \author{
-Yifu Liu, Anru Zhang, Tianxi Cai and T. Tony Cai
+Yifu Liu and Anru Zhang
 
 Maintainer: Yifu Liu (2012johnnyliu@gmail.com)
 }
