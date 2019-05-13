@@ -29,32 +29,24 @@ number of columns of block A11
 }
 
 \references{
-Cai, T., Cai, T. T., & Zhang, A. (2015). Structured Matrix Completion with Applications to Genomic Data Integration. \emph{Journal of the American Statistical Association}, to appear.
+Cai, T., Cai, T. T., & Zhang, A. (2015). Structured Matrix Completion with Applications to Genomic Data Integration. \emph{Journal of the American Statistical Association}.
 }
 \author{
-Yifu Liu, Anru Zhang, Tianxi Cai and T. Tony Cai, 
+Yifu Liu and Anru Zhang 
 }
 
 
 \examples{
 ##dimension of matrix A with row number p1 = 10 and column number p2 = 9
-p1 = 10
-p2 = 9
-m1 = 6##row number of A11
-m2 = 3##column number of A11
-A = matrix(rnorm(10, mean = 0, sd = 0.1), p1, p2)
-##find the approximation low-rank of A under singular value decomposition (SVD)
-j1 = svd(A)$d
-num<-length(which(j1!=0))
-j2 = svd(A)$u
-j3 = svd(A)$v
-D<-diag(j1)
-D[num, num] = 0
-app_low_rank_A = j2%*%D%*%t(j3)
-##consturct the matrix Arecovery that need to be recovered
-A11 = app_low_rank_A[1:m1, 1:m2]
-A12 = app_low_rank_A[1:m1, (1+m2):p2]
-A21 = app_low_rank_A[(1+m1):p1, 1:m2]
+p1 = 60
+p2 = 50
+m1 = 55##row number of A11
+m2 = 45##column number of A11
+A = matrix(rnorm(300, mean = 0.05, sd = 0.1), p1, p2)
+#different blocks of our matrix A
+A11 = A[1:m1, 1:m2]
+A12 = A[1:m1, (1+m2):p2]
+A21 = A[(1+m1):p1, 1:m2]
 Arecovery = rbind(cbind(A11,A12),cbind(A21,matrix(NA,nrow=p1-m1,ncol=p2-m2)))
 ##recovery the block A22
 A22 = smc.FUN(Arecovery, 2, "True", m1, m2) 
